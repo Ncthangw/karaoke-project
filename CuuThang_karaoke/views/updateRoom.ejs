@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Update Booking</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+</head>
+
+<body class="container mt-5">
+
+<h1 class="mb-4">
+
+    Update Booking
+
+</h1>
+
+<form
+    action="/bookings/edit/<%= booking._id %>"
+    method="POST"
+    class="w-50">
+
+    <div class="mb-3">
+
+        <label class="form-label">
+
+            Customer Name
+
+        </label>
+
+        <input
+            type="text"
+            name="customerName"
+            value="<%= booking.customerName %>"
+            class="form-control">
+
+    </div>
+
+
+    <div class="mb-3">
+
+        <label class="form-label">
+
+            Room Number
+
+        </label>
+
+        <select
+            name="roomNumber"
+            class="form-select">
+
+            <% rooms.forEach(room => { %>
+
+                <option
+                    value="<%= room.roomNumber %>"
+
+                    <%= room.roomNumber === booking.roomNumber
+                        ? "selected"
+                        : ""
+                    %>>
+
+                    <%= room.roomNumber %>
+
+                </option>
+
+            <% }) %>
+
+        </select>
+
+    </div>
+
+
+    <div class="mb-3">
+
+        <label class="form-label">
+
+            Start Time
+
+        </label>
+
+        <input
+            type="datetime-local"
+            name="startTime"
+            class="form-control"
+            value="<%= booking.startTime.toISOString().slice(0,16) %>">
+
+    </div>
+
+
+    <div class="mb-4">
+
+        <label class="form-label">
+
+            End Time
+
+        </label>
+
+        <input
+            type="datetime-local"
+            name="endTime"
+            class="form-control"
+            value="<%= booking.endTime.toISOString().slice(0,16) %>">
+
+    </div>
+
+
+    <button
+        type="submit"
+        class="btn btn-primary">
+
+        Update
+
+    </button>
+
+    <a
+        href="/bookings"
+        class="btn btn-secondary">
+
+        Cancel
+
+    </a>
+
+</form>
+
+</body>
+</html>
