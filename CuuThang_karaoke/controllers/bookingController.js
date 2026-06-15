@@ -16,6 +16,8 @@ exports.getBookings = async (req, res) => {
 exports.showAddForm = async(req, res) => {
     try{
         const rooms = await Room.find();
+
+        console.log("Rooms =", rooms);
         res.render("bookRoom", {
             rooms
         });
